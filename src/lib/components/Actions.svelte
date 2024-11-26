@@ -1,7 +1,7 @@
 <script>
-  import { Post } from "../types.d.ts";
+  import { AppBskyFeedDefs } from "@atproto/api";
 
-  /** @type {Post} */
+  /** @type {AppBskyFeedDefs.PostView} */
   export let post;
 </script>
 

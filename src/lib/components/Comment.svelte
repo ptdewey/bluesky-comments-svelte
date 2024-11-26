@@ -1,9 +1,12 @@
 <script>
-  import { AppBskyFeedPost } from "@atproto/api";
+  import Comment from "./Comment.svelte";
+  import { AppBskyFeedPost, AppBskyFeedDefs } from "@atproto/api";
+  import "$lib/styles/CommentSection.css";
+  import Actions from "./Actions.svelte";
+  import { sortReplies } from "./utils.js";
 
-  /** @type {import("$lib/types").Reply} */
+  /** @type {AppBskyFeedDefs.ThreadViewPost} */
   export let comment;
-  const author = comment.post.author;
 </script>
 
 {#if AppBskyFeedPost.isRecord(comment.post.record)}
@@ -11,7 +14,7 @@
     <div class="commentContent">
       <a
         class="authorLink"
-        href={`https://bsky.app/profile/${author.did}`}
+        href={`https://bsky.app/profile/${comment.post.author.did}`}
         target="_blank"
         rel="noreferrer noopener"
       >
@@ -20,9 +23,29 @@
           src={comment.post.author.avatar || ""}
           alt="avatar"
         />
-        <p class="authorName">{author.displayName || author.handle}</p>
+        <p class="authorName">
+          {comment.post.author.displayName || comment.post.author.handle}
+          <span class="handle">@{comment.post.author.handle}</span>
+        </p>
       </a>
-      <p>{comment.post.record.text}</p>
+      <a
+        href={`https://bsky.app/profile/${comment.post.author.did}/post/${comment.post.uri.split("/").pop()}`}
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <p>{comment.post.record.text}</p>
+      </a>
+      <Actions post={comment.post} />
     </div>
+
+    {#if comment.replies && comment.replies.length > 0}
+      <div class="repliesContainer">
+        {#each sortReplies(comment.replies) as reply (reply.post.uri)}
+          {#if AppBskyFeedDefs.isThreadViewPost(reply)}
+            <Comment comment={reply} />
+          {/if}
+        {/each}
+      </div>
+    {/if}
   </div>
 {/if}

@@ -1,22 +1,29 @@
 <script>
   import { onMount } from "svelte";
-  import { AppBskyFeedDefs } from "@atproto/api";
+  import { AppBskyFeedDefs, AppBskyFeedGetPostThread } from "@atproto/api";
+  import { sortReplies } from "./utils.js";
   import Comment from "./Comment.svelte";
   import "$lib/styles/CommentSection.css";
 
+  export let author = "";
   export let uri = "";
+
   let validatedUri = "";
   let postUrl = "https://bsky.app";
 
-  /** @type {import("$lib/types").Thread} */
+  /** @type {AppBskyFeedDefs.ThreadViewPost} */
   let thread = null;
 
-  /** @type {Error?} */
+  /** @type {string?} */
   let error = null;
 
   let visibleCount = 5;
 
-  /** @param {string} uri */
+  /**
+   * @param {string} uri
+   * a @ returns {Promise<Thread>}
+   * @returns {Promise<AppBskyFeedDefs.ThreadViewPost>}
+   */
   const getPostThread = async function (uri) {
     const params = new URLSearchParams({ uri });
 
@@ -47,14 +54,35 @@
     return data.thread;
   };
 
-  /** @param {import("$lib/types").Reply[]} replies */
-  const sortReplies = function (replies) {
-    return replies.sort(
-      (a, b) => (b.post?.likeCount || 0) - (a.post?.likeCount || 0),
-    );
+  const fetchPost = async function () {
+    const currentUrl = window.location.href;
+    const apiUrl = `https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=*&url=${encodeURIComponent(currentUrl)}&author=${author}`;
+
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      if (data.posts && data.posts.length > 0) {
+        /** @type {AppBskyFeedDefs.PostView} */
+        const post = data.posts[0];
+        uri = post.uri;
+        validatedUri = validateAndFormatUri(uri);
+
+        const [, , did, _, rkey] = uri.split("/");
+        postUrl = `https://bsky.app/profile/${did}/post/${rkey}`;
+
+        fetchThreadData();
+      } else {
+        error = "No matching post found";
+      }
+    } catch (err) {
+      error = "Error fetching post";
+    }
   };
 
-  /** @param {string} uri */
+  /**
+   * @param {string} uri
+   */
   const validateAndFormatUri = function (uri) {
     if (!uri.startsWith("at://")) {
       if (uri.includes("bsky.app/profile/")) {
@@ -70,12 +98,11 @@
     return uri;
   };
 
-  /** @param {string} uri */
   const fetchThreadData = async function () {
     try {
       thread = await getPostThread(validatedUri);
     } catch (err) {
-      console.log(Error);
+      console.log(err);
       error = err;
     }
   };
@@ -85,11 +112,15 @@
   };
 
   onMount(() => {
-    try {
-      validatedUri = validateAndFormatUri(uri);
-      fetchThreadData();
-    } catch (err) {
-      error = err.message;
+    if (uri) {
+      try {
+        validatedUri = validateAndFormatUri(uri);
+        fetchThreadData();
+      } catch (err) {
+        error = err.message;
+      }
+    } else if (author) {
+      fetchPost();
     }
   });
 </script>
