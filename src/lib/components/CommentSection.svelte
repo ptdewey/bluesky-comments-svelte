@@ -3,7 +3,6 @@
   import { AppBskyFeedDefs, AppBskyFeedGetPostThread } from "@atproto/api";
   import { sortReplies } from "./utils.js";
   import Comment from "./Comment.svelte";
-  // import "$lib/styles/CommentSection.css";
 
   export let author = "";
   export let uri = "";
@@ -210,8 +209,14 @@
 </div>
 
 <style>
+  :root {
+    --show-more-button-color: #3b82f6;
+    --comment-border-color: #525252;
+    --font-size-title: 1.25rem;
+  }
+
   .commentSectionContainer {
-    border-left: 2px solid #525252;
+    border-left: 2px solid var(--comment-border-color);
     padding-left: 0.5rem;
   }
 
@@ -234,7 +239,7 @@
   .showMoreButton {
     margin-top: 0.5rem;
     font-size: 0.875rem;
-    color: #3b82f6;
+    color: var(--show-more-button-color);
     text-decoration: underline;
   }
 
@@ -262,7 +267,7 @@
 
   .commentsTitle {
     margin-top: 1.5rem;
-    font-size: 1.25rem;
+    font-size: var(--font-size-title, 1.25rem);
     font-weight: bold;
   }
 

@@ -1,7 +1,6 @@
 <script>
-  import Comment from "./Comment.svelte";
   import { AppBskyFeedPost, AppBskyFeedDefs } from "@atproto/api";
-  // import "$lib/styles/CommentSection.css";
+  import Comment from "./Comment.svelte";
   import Actions from "./Actions.svelte";
   import { sortReplies } from "./utils.js";
 
@@ -52,12 +51,12 @@
 
 <style>
   .repliesContainer {
-    border-left: 2px solid #525252;
+    border-left: 2px solid var(--comment-border-color, #525252);
     padding-left: 0.5rem;
   }
 
   .commentContainer {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     font-size: 0.875rem;
   }
 
@@ -80,11 +79,12 @@
   }
 
   .commentAvatar {
-    height: 1rem;
-    width: 1rem;
+    height: var(--avatar-size, 1rem);
+    width: var(--avatar-size, 1rem);
     flex-shrink: 0;
     border-radius: 9999px;
     background-color: #d1d5db;
+    margin-right: 0.3rem;
   }
 
   .authorName {
@@ -107,6 +107,6 @@
   }
 
   .commentContent .handle {
-    color: #6b7280;
+    color: var(--handle-color, #6b7280);
   }
 </style>
