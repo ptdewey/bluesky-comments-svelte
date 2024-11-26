@@ -209,14 +209,8 @@
 </div>
 
 <style>
-  :root {
-    --show-more-button-color: #3b82f6;
-    --comment-border-color: #525252;
-    --font-size-title: 1.25rem;
-  }
-
   .commentSectionContainer {
-    border-left: 2px solid var(--comment-border-color);
+    border-left: 2px solid var(--comment-border-color, #525252);
     padding-left: 0.5rem;
   }
 
@@ -239,7 +233,7 @@
   .showMoreButton {
     margin-top: 0.5rem;
     font-size: 0.875rem;
-    color: var(--show-more-button-color);
+    color: var(--show-more-button-color, #3b82f6);
     text-decoration: underline;
   }
 

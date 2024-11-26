@@ -64,7 +64,6 @@
     display: flex;
     max-width: 36rem;
     flex-direction: column;
-    gap: 0.5rem;
   }
 
   .authorLink {
@@ -83,7 +82,7 @@
     width: var(--avatar-size, 1rem);
     flex-shrink: 0;
     border-radius: 9999px;
-    background-color: #d1d5db;
+    background-color: var(--avatar-background-color, #d1d5db);
     margin-right: 0.3rem;
   }
 
