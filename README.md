@@ -1,58 +1,70 @@
-# create-svelte
+# Bluesky Comments (svelte)
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+`bluesky-comments-svelte` is a Svelte-based component for embedding Bluesky comment sections seamlessly into your Svelte applications.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+This package is inspired by and based on the functionality provided by the [Bluesky Comments project](https://github.com/czue/bluesky-comments) created by Cory Zue. It adapts the original idea to work natively within the Svelte ecosystem for better developer experience and integration.
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Features
 
-```bash
-# create a new project in the current directory
-npx sv create
+- Native Svelte component for embedding Bluesky comment sections.
+- Simple, declarative syntax for easy integration.
+- Lightweight and dependency-friendly.
 
-# create a new project in my-app
-npx sv create my-app
-```
 
-## Developing
+## Installation
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Install the package using npm:
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+npm install bluesky-comments-svelte
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+## Usage
 
-## Building
+```svelte
+<script>
+  import { CommentSection } from "bluesky-comments-svelte";
 
-To build your library:
+  // Provide the URI of the Bluesky post you want to display comments for
+  const uri = "https://bsky.app/profile/emilyliu.me/post/3lbq7dp6k6k2x";
+</script>
 
-```bash
-npm run package
+<CommentSection {uri} />
 ```
 
-To create a production version of your showcase app:
 
-```bash
-npm run build
-```
+#### Props
 
-You can preview the production build with `npm run preview`.
+The `CommentSection` component accepts the following prop:
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- `uri` (string) - **Required**
+  The URI of the Bluesky post for which comments should be displayed.
 
-## Publishing
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+## Development
 
-To publish your library to [npm](https://www.npmjs.com):
+If you'd like to contribute or modify this package:
 
-```bash
-npm publish
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ptdewey/bluesky-comments-svelte.git
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+
+## Support
+
+For questions or support, open an issue on the [GitHub repository](https://github.com/ptdewey/bluesky-comments-svelte/issues). Feedback and contributions are highly appreciated!
