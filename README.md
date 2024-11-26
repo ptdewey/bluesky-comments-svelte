@@ -22,6 +22,8 @@ npm install bluesky-comments-svelte
 
 ## Usage
 
+Attaching comments of specific post by link:
+
 ```svelte
 <script>
   import { CommentSection } from "bluesky-comments-svelte";
@@ -33,14 +35,29 @@ npm install bluesky-comments-svelte
 <CommentSection {uri} />
 ```
 
+Automatically attach comments to the most recent post that links to page:
+
+```svelte
+<script>
+  import { CommentSection } from "bluesky-comments-svelte";
+
+  const author = "pdewey.com";
+</script>
+
+<CommentSection {author} />
+```
+
 
 #### Props
 
-The `CommentSection` component accepts the following prop:
+The `CommentSection` component accepts the following props:
 
-- `uri` (string) - **Required**
+- `uri` (string)
   The URI of the Bluesky post for which comments should be displayed.
+- `author` (string)
+  The Bluesky post author username for which posts should be checked for matching URLs
 
+One and only one should be specified for any given CommentSection component.
 
 ## Development
 
