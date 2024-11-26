@@ -58,3 +58,27 @@
     <p class="text-xs">{post.likeCount ?? 0}</p>
   </div>
 </div>
+
+<style>
+  .actionsIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .actionsContainer {
+    margin-top: 0.5rem;
+    display: flex;
+    width: 100%;
+    max-width: 150px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0.6;
+  }
+
+  .actionsRow {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+</style>

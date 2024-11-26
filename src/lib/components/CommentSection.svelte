@@ -3,7 +3,7 @@
   import { AppBskyFeedDefs, AppBskyFeedGetPostThread } from "@atproto/api";
   import { sortReplies } from "./utils.js";
   import Comment from "./Comment.svelte";
-  import "$lib/styles/CommentSection.css";
+  // import "$lib/styles/CommentSection.css";
 
   export let author = "";
   export let uri = "";
@@ -208,3 +208,66 @@
     </div>
   {/if}
 </div>
+
+<style>
+  .commentSectionContainer {
+    border-left: 2px solid #525252;
+    padding-left: 0.5rem;
+  }
+
+  .commentsList {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .errorText,
+  .loadingText {
+    text-align: center;
+  }
+
+  .divider {
+    margin-top: 0.5rem;
+  }
+
+  .showMoreButton {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #3b82f6;
+    text-decoration: underline;
+  }
+
+  .statsBar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .statsBar:hover {
+    text-decoration: underline;
+  }
+
+  .statItem {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    white-space: nowrap;
+  }
+
+  .statIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .commentsTitle {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .replyText {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+  }
+</style>

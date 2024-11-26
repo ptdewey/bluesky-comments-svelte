@@ -1,7 +1,7 @@
 <script>
   import Comment from "./Comment.svelte";
   import { AppBskyFeedPost, AppBskyFeedDefs } from "@atproto/api";
-  import "$lib/styles/CommentSection.css";
+  // import "$lib/styles/CommentSection.css";
   import Actions from "./Actions.svelte";
   import { sortReplies } from "./utils.js";
 
@@ -49,3 +49,64 @@
     {/if}
   </div>
 {/if}
+
+<style>
+  .repliesContainer {
+    border-left: 2px solid #525252;
+    padding-left: 0.5rem;
+  }
+
+  .commentContainer {
+    margin: 1rem 0;
+    font-size: 0.875rem;
+  }
+
+  .commentContent {
+    display: flex;
+    max-width: 36rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .authorLink {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .authorLink:hover {
+    text-decoration: underline;
+  }
+
+  .commentAvatar {
+    height: 1rem;
+    width: 1rem;
+    flex-shrink: 0;
+    border-radius: 9999px;
+    background-color: #d1d5db;
+  }
+
+  .authorName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  .commentContainer a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .commentContainer a:hover {
+    text-decoration: none;
+  }
+
+  .commentContent .handle {
+    color: #6b7280;
+  }
+</style>
