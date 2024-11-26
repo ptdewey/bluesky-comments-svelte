@@ -261,12 +261,13 @@
 
   .commentsTitle {
     margin-top: 1.5rem;
+    margin-left: var(--left-margin-comments-title, 0);
     font-size: var(--font-size-title, 1.25rem);
     font-weight: bold;
   }
 
   .replyText {
     margin-top: 0.5rem;
-    font-size: 0.875rem;
+    font-size: var(font-size-comment-body, 0.875rem);
   }
 </style>
