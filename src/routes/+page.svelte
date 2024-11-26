@@ -5,11 +5,11 @@
   const author = "ptdewey.bsky.social";
 </script>
 
-<!-- comment section from uri -->
-<CommentSection {uri} />
+<!-- comment section from author, hide "Comments" header -->
+<CommentSection {author} opts={{ showCommentsTitle: false }} />
 
 <!-- comment section from author -->
 <CommentSection {author} />
 
-<!-- comment section from author, hide "Comments" header -->
-<CommentSection {author} opts={{ showCommentsTitle: false }} />
+<!-- comment section from uri -->
+<CommentSection {uri} />
