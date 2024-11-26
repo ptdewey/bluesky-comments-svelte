@@ -64,7 +64,7 @@
     display: flex;
     max-width: 36rem;
     flex-direction: column;
-    align-items: var(--comment-content-alignment, left);
+    align-items: var(--comment-content-alignment, flex-start);
   }
 
   .authorLink {

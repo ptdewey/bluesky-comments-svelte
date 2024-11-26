@@ -53,9 +53,12 @@ Automatically attach comments to the most recent post that links to page:
 The `CommentSection` component accepts the following props:
 
 - `uri` (string)
-  The URI of the Bluesky post for which comments should be displayed.
+    The URI of the Bluesky post for which comments should be displayed.
 - `author` (string)
-  The Bluesky post author username for which posts should be checked for matching URLs
+    The Bluesky post author username for which posts should be checked for matching URLs
+- `opts` (object) -- Optional
+    A JSON object of options that can be passed into the component
+    Currently contains: `showCommentsTitle` (Boolean -- default true) that tells the component whether or not to render the "Comments" header.
 
 One and only one should be specified for any given CommentSection component.
 

@@ -4,8 +4,11 @@
   import { sortReplies } from "./utils.js";
   import Comment from "./Comment.svelte";
 
-  export let author = "";
   export let uri = "";
+  export const author = "";
+  export let opts = {
+    showCommentsTitle: true,
+  };
 
   let validatedUri = "";
   let postUrl = "https://bsky.app";
@@ -125,11 +128,21 @@
 </script>
 
 <div class="commentSectionContainer">
+  {#if opts.showCommentsTitle}
+    <h2 class="commentsTitle">Comments</h2>
+  {/if}
   {#if error}
     <p class="errorText">{error}</p>
   {:else if !thread}
     <p class="loadingText">Loading comments...</p>
   {:else}
+    <p class="replyText">
+      Reply on Bluesky{" "}
+      <a href={postUrl} target="_blank" rel="noreferrer noopener">
+        here
+      </a>{" "}
+      to join the conversation.
+    </p>
     <a href={postUrl} target="_blank" rel="noreferrer noopener"
       ><p class="statsBar">
         <span class="statItem">
@@ -186,14 +199,6 @@
         </span>
       </p>
     </a>
-    <h2 class="commentsTitle">Comments</h2>
-    <p class="replyText">
-      Reply on Bluesky{" "}
-      <a href={postUrl} target="_blank" rel="noreferrer noopener">
-        here
-      </a>{" "}
-      to join the conversation.
-    </p>
     <hr class="divider" />
     <div class="commentsList">
       {#each sortReplies(thread.replies).slice(0, visibleCount) as comment (comment.post.uri)}
@@ -223,7 +228,7 @@
 
   .errorText,
   .loadingText {
-    text-align: center;
+    text-align: var(--error-loading-alignment, center);
   }
 
   .divider {
