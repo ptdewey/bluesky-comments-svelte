@@ -77,9 +77,6 @@
 
   .authorLink:hover {
     text-decoration: underline;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    display: -webkit-box;
   }
 
   .commentAvatar {
