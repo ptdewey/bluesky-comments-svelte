@@ -72,10 +72,14 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    color: var(--author-link-color);
   }
 
   .authorLink:hover {
     text-decoration: underline;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: -webkit-box;
   }
 
   .commentAvatar {
@@ -89,9 +93,6 @@
 
   .authorName {
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    display: -webkit-box;
     line-clamp: 1;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
