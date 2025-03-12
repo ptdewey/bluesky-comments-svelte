@@ -10,7 +10,7 @@
         "url": "git+https://github.com/ptdewey/bluesky-comments-svelte.git"
     },
     "license": "MIT",
-	"version": "0.0.13",
+	"version": "0.1.0",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",

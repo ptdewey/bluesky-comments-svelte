@@ -127,7 +127,7 @@
   });
 </script>
 
-<div class="commentSectionContainer">
+<div>
   {#if opts.showCommentsTitle}
     <h2 class="commentsTitle">Comments</h2>
   {/if}
@@ -136,7 +136,7 @@
   {:else if !thread}
     <p class="loadingText">Loading comments...</p>
   {:else}
-    <div class="commentsSectionContainerPostFound">
+    <div class="commentSectionContainer">
       <a href={postUrl} target="_blank" rel="noreferrer noopener"
         ><p class="statsBar">
           <span class="statItem">
@@ -218,9 +218,6 @@
 <style>
   .commentSectionContainer {
     padding-left: 0.5rem;
-  }
-
-  .commentsSectionContainerPostFound {
     border-left: 2px solid var(--comment-border-color, #525252);
   }
 
