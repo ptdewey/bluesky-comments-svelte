@@ -273,6 +273,6 @@
 
   .replyText {
     margin-top: 0.5rem;
-    font-size: var(font-size-comment-body, 0.875rem);
+    font-size: var(--font-size-comment-body, 0.875rem);
   }
 </style>
