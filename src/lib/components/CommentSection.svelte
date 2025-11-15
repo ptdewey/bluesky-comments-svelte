@@ -97,6 +97,9 @@
       }
       throw new Error("Invalid URI format");
     }
+    
+    const [, , did, _, rkey] = uri.split("/");
+    postUrl = `https://bsky.app/profile/${did}/post/${rkey}`;
     return uri;
   };
 
