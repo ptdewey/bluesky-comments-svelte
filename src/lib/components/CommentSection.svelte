@@ -30,7 +30,7 @@
     const params = new URLSearchParams({ uri });
 
     const res = await fetch(
-      "https://public.api.bsky.app/xrpc/app.bsky.feed.getPostThread?" +
+      "https://api.bsky.app/xrpc/app.bsky.feed.getPostThread?" +
         params.toString(),
       {
         method: "GET",
@@ -58,7 +58,7 @@
 
   const fetchPost = async function () {
     const currentUrl = window.location.href;
-    const apiUrl = `https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=*&url=${encodeURIComponent(currentUrl)}&author=${author}`;
+    const apiUrl = `https://api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=*&url=${encodeURIComponent(currentUrl)}&author=${author}`;
 
     try {
       const response = await fetch(apiUrl);
